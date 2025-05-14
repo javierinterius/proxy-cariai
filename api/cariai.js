@@ -4,16 +4,18 @@ export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  // Manejar la solicitud preflight (CORS)
+  // Manejar preflight OPTIONS (¡con return!)
   if (req.method === "OPTIONS") {
-    return res.status(200).end();
+    res.status(200).end();
+    return;
   }
 
-  // Validar método POST
+  // Validar método
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Método no permitido" });
   }
 
+  // Enviar a Cari AI
   try {
     const response = await fetch("https://cariai.com/crudapi/v1/create", {
       method: "POST",
