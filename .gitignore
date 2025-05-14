@@ -1,0 +1,4 @@
+node_modules
+.DS_Store
+git add .
+git commit -m "Primer commit: proxy a Cari AI"
