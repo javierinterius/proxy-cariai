@@ -1,10 +1,10 @@
 export default async function handler(req, res) {
-  // Habilitar CORS para todos los orígenes
-  res.setHeader("Access-Control-Allow-Origin", "https://info.fanosa.com");
+  // Habilitar CORS
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  // Manejar preflight request
+  // Manejar preflight
   if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
@@ -15,14 +15,13 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Llamada a la API de Cari AI
     const response = await fetch("https://cariai.com/crudapi/v1/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "CariSec": "CTIP2Zl4cTQ4SThSuY83vE1pWnN5Q25tM01TaWZSMjRiME9yR3c2e1E2WXFjL2FkSTU0WWU3a"
+        "CariSec": "CTIP2Zl4cTQ4SThs8uy83VE1pWnNSQ25tM01TaWZSMjRiME9yR3c2e1E2WXFjL2FkSTU0WWU3a"
       },
-      body: JSON.stringify(req.body),
+      body: JSON.stringify(req.body)
     });
 
     const data = await response.json();
@@ -31,7 +30,7 @@ export default async function handler(req, res) {
   } catch (error) {
     res.status(500).json({
       error: "Error al conectar con Cari AI",
-      detalle: error.message,
+      detalle: error.message
     });
   }
 }
