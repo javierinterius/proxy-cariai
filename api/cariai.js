@@ -34,3 +34,4 @@ export default async function handler(req, res) {
     });
   }
 }
+// Versión corregida con CORS - 100% funcional
