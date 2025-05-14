@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  // Responder al preflight (OPTIONS)
+  // Manejar preflight request
   if (req.method === "OPTIONS") {
     return res.status(200).end();
   }
@@ -14,13 +14,12 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Método no permitido" });
   }
 
-  // Enviar a la API de Cari AI
   try {
     const response = await fetch("https://cariai.com/crudapi/v1/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "CariSec": "cTLP2ZI4cTQ4SThSUy83VE1pWnNSQ25tM01TaWZSMjRiME9yR3c2e1EZWXFjL2FkSTU0WWU3a"
+        "CariSec": "CTlPZ2I4cTQ4SThs8uy83VE1pWnNSQ25tM01TaWZSMjRiME9yR3c2e1EZWXFjL2FkSTU0WWU3a"
       },
       body: JSON.stringify(req.body),
     });
@@ -34,4 +33,3 @@ export default async function handler(req, res) {
     });
   }
 }
-// Versión corregida con CORS - 100% funcional
