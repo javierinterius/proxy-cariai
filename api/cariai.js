@@ -4,9 +4,9 @@ export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  // Manejar preflight
+  // Manejar preflight OPTIONS
   if (req.method === "OPTIONS") {
-    return res.status(200).end();
+    return res.status(200).end(); // << ESTE return es crítico
   }
 
   // Validar método
@@ -14,14 +14,15 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Método no permitido" });
   }
 
+  // Enviar a la API de Cari AI
   try {
     const response = await fetch("https://cariai.com/crudapi/v1/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "CariSec": "CTIP2Zl4cTQ4SThs8uy83VE1pWnNSQ25tM01TaWZSMjRiME9yR3c2e1E2WXFjL2FkSTU0WWU3a"
+        "CariSec": "TU_TOKEN"
       },
-      body: JSON.stringify(req.body)
+      body: JSON.stringify(req.body),
     });
 
     const data = await response.json();
@@ -30,7 +31,7 @@ export default async function handler(req, res) {
   } catch (error) {
     res.status(500).json({
       error: "Error al conectar con Cari AI",
-      detalle: error.message
+      detalle: error.message,
     });
   }
 }
