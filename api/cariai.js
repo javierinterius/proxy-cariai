@@ -19,7 +19,7 @@ export default async function handler(req, res) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "CariSec": "CTlPZ2I4cTQ4SThs8uy83VE1pWnNSQ25tM01TaWZSMjRiME9yR3c2e1EZWXFjL2FkSTU0WWU3a"
+        "CariSec": "CTIPZ2I4cTQ4SThSUy83VE1pWnNSQ25tM01TaWZSMjRiME9yR3c2e1E2WXFjL2FkSTU0WWU3a"
       },
       body: JSON.stringify(req.body),
     });
