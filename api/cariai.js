@@ -1,14 +1,13 @@
 export default async function handler(req, res) {
   // Habilitar CORS
   res.setHeader("Access-Control-Allow-Origin", "https://info.fanosa.com");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Credentials", "true"); // IMPORTANTE
 
-  // Manejar preflight OPTIONS
+  // Manejar preflight
   if (req.method === "OPTIONS") {
-    res.status(200).end();
-    return;
+    return res.status(200).end();
   }
 
   // Validar método
